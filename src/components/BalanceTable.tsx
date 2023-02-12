@@ -1,3 +1,7 @@
+interface BalanceTableProps {
+  balance: string;
+}
+
 const people = [
   {
     name: "Lindsay Walton",
@@ -8,7 +12,9 @@ const people = [
   // More people...
 ];
 
-export default function BalanceTable() {
+export default function BalanceTable({ balance }: BalanceTableProps) {
+  if (!balance) return null;
+
   return (
     <div>
       <div className="mt-8 flex flex-col">

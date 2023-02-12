@@ -44,7 +44,7 @@ export default function Header() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-row min-w-full justify-between ">
-        <Image src="/logo.png" alt="Penny Logo" width={50} height={50} />
+        <Image src="/Logo.png" alt="Penny Logo" width={50} height={50} />
         <div className="text-white">
           <Web3Button />
         </div>

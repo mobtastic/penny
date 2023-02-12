@@ -6,6 +6,8 @@ interface PortfolioBalanceProps {
 
 //ToDo: Fix the centering of image, hardcode the ml-16 atm
 export default function PortfolioBalance({ balance }: PortfolioBalanceProps) {
+  if (!balance) return null;
+
   return (
     // <div className="flex justify-end ">
     <div className="flex justify-start ">
@@ -19,10 +21,10 @@ export default function PortfolioBalance({ balance }: PortfolioBalanceProps) {
         }}
       >
         <div className="flex flex-col text-black justify-center items-center ml-8">
-          <h1 className="text-5xl font-bold">
-            {balance ? balance + " CANTO" : "No Balance"}
+          <h1 className={balance ? "text-5xl font-bold" : "text-2xl"}>
+            {balance ? balance + " CANTO" : "Connect Wallet"}
           </h1>
-          <h1 className="mt-2">Portfolio Balance</h1>
+          {balance && <h1 className="mt-2">Portfolio Balance</h1>}
         </div>
       </div>
     </div>

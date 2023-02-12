@@ -1,17 +1,20 @@
 import { cantoProvider } from "@/pages/_app";
 import { ethers } from "ethers";
 import { useCallback, useEffect, useState } from "react";
-import { useAccount, useBalance } from "wagmi";
+import { useAccount } from "wagmi";
+
 import BalanceTable from "./BalanceTable";
-import CINU_ABI from "@/abis/CINU_ABI.json";
-import { formatedBalance } from "@/utils/EthersUtils";
-import Image from "next/image";
-import balanceContainer from "../../public/Balance.png";
 import PortfolioBalance from "./PortfolioBalance";
 
+import { formatedBalance } from "@/utils/EthersUtils";
+
+import CINU_ABI from "@/abis/CINU_ABI.json";
+import NOTE_ABI from "@/abis/NOTE_ABI.json";
+
 export default function Balance() {
-  const { address } = useAccount();
+  const { address, isDisconnected } = useAccount();
   const [balance, setBalance] = useState("");
+  const [aggregateBalance, setAggregateBalance] = useState();
 
   const getBalance = useCallback(async () => {
     const balance = await cantoProvider.getBalance(address);
@@ -20,15 +23,31 @@ export default function Balance() {
   }, [address]);
 
   const checkCINUBalance = useCallback(async () => {
-    const contractAddress = "0x7264610A66EcA758A8ce95CF11Ff5741E1fd0455";
-    const abi = CINU_ABI;
+    // Get CUINU balance;
+    const CINUcontractAddress = "0x7264610A66EcA758A8ce95CF11Ff5741E1fd0455";
+    const cinuABI = CINU_ABI;
     const CINUcontract = new ethers.Contract(
-      contractAddress,
-      abi,
+      CINUcontractAddress,
+      cinuABI,
       cantoProvider
     );
-    const balance = await CINUcontract.balanceOf(address);
-    console.log(formatedBalance(balance));
+    const cinuBalance = await CINUcontract.balanceOf(address);
+    console.log("CINU:", formatedBalance(cinuBalance));
+
+    // Get Note balance;
+    const NOTEcontractAddress = "0x4e71A2E537B7f9D9413D3991D37958c0b5e1e503";
+    const noteABI = NOTE_ABI;
+    const noteContract = new ethers.Contract(
+      NOTEcontractAddress,
+      noteABI,
+      cantoProvider
+    );
+    const noteBalance = await noteContract.balanceOf(address);
+    console.log("NOTE:", formatedBalance(noteBalance));
+
+    // Get ATOM balance;
+
+    // Get USDC balance;
   }, [address]);
 
   useEffect(() => {
@@ -36,7 +55,10 @@ export default function Balance() {
       getBalance();
       checkCINUBalance();
     }
-  }, [address, getBalance, checkCINUBalance]);
+    if (isDisconnected) {
+      setBalance("");
+    }
+  }, [address, getBalance, checkCINUBalance, isDisconnected]);
 
   // ToDo list:
   // 1. Add a loading state
@@ -48,7 +70,8 @@ export default function Balance() {
     <>
       <div className="w-full p-6 pr-0 ">
         <PortfolioBalance balance={balance} />
-        <BalanceTable />
+
+        <BalanceTable balance={balance} />
       </div>
     </>
   );
