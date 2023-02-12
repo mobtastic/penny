@@ -40,7 +40,7 @@ export default function SideBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="w-1/6  border-r border-r-[#2D312F]">
+    <div className="w-1/6  border-r border-r-[#2D312F] mt-8">
       {navigation.map((item) => (
         <a
           key={item.name}

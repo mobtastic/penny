@@ -4,6 +4,7 @@ import { useWeb3ModalTheme } from "@web3modal/react";
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
 import Balance from "@/components/Balance";
+import BG from "../../public/BG.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,14 +19,20 @@ export default function Home() {
   });
 
   return (
-    <>
-      <main className={styles.main}>
+    <div>
+      <main
+        className={styles.main}
+        style={{
+          backgroundImage: `url(${BG.src})`,
+          backgroundSize: "cover",
+        }}
+      >
         <Header />
         <div className={"flex min-w-full h-[70vh]"}>
           <SideBar />
           <Balance />
         </div>
       </main>
-    </>
+    </div>
   );
 }

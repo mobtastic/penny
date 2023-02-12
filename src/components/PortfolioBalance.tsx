@@ -21,7 +21,7 @@ export default function PortfolioBalance({ balance }: PortfolioBalanceProps) {
         }}
       >
         <div className="flex flex-col text-black justify-center items-center ml-8">
-          <h1 className={balance ? "text-5xl font-bold" : "text-2xl"}>
+          <h1 className={balance ? "text-4xl font-bold" : "text-2xl"}>
             {balance ? balance + " CANTO" : "Connect Wallet"}
           </h1>
           {balance && <h1 className="mt-2">Portfolio Balance</h1>}
