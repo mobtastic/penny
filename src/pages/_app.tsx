@@ -9,6 +9,11 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { canto } from "wagmi/chains";
+const ethers = require("ethers");
+
+export let cantoProvider = new ethers.providers.JsonRpcProvider(
+  "https://canto.slingshot.finance"
+);
 
 export default function App({ Component, pageProps }: AppProps) {
   const chains = [canto];
@@ -17,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const { provider } = configureChains(chains, [
     walletConnectProvider({ projectId: projectId }),
   ]);
+
   const wagmiClient = createClient({
     autoConnect: true,
     connectors: modalConnectors({
