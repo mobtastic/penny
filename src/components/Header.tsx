@@ -74,11 +74,11 @@ export default function Header() {
       </Head>
       <div className="flex flex-row min-w-full justify-between ">
         <Image src="/Logo.png" alt="Penny Logo" width={50} height={50} />
-        <div className="flex w-3/4 justify-center items-center overflow-hidden border-t border-b border-t-[#2D312F] border-b-[#2D312F] ">
+        <div className="flex w-3/4 justify-center items-center overflow-hidden border-t border-b border-t-[#2D312F] border-b-[#2D312F] background-black ">
           {dummyData.map((data, index) => (
             <div key={index} className={styles.scrollingTextItem}>
-              {`${data.name} - ${data.balance} (${data.change > 0 ? "+" : "-"}${
-                data.change
+              {`${data.name}  $${data.balance} (${data.change > 0 ? "+" : "-"}${
+                data.change * 100
               }%)`}
             </div>
           ))}

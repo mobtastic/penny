@@ -299,7 +299,7 @@
 .scrollingTextItem {
   animation: scrolling 5s linear infinite;
   backface-visibility: hidden;
-  margin-right: 2em;
+  margin-right: 1em;
 }
 
 .gradientBG {
@@ -307,4 +307,17 @@
   width: 100%;
   /* background: linear-gradient(180deg, #00ffc0 0%, #e0ff84 100%); */
   /* filter: blur(100px); */
+}
+
+.sideBarText {
+  background: linear-gradient(to right, #00ffa0 0%, #e0ff84 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  font-size: 18;
+  width: 100%;
+  /* font: {
+    size: 20vw;
+    family: $font;
+  } */
 }

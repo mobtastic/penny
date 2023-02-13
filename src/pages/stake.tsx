@@ -5,11 +5,13 @@ import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
 import Balance from "@/components/Balance";
 import BG from "../../public/BG.png";
+import BalanceTable from "@/components/BalanceTable";
+import StakeContent from "@/components/StakeContent";
 
 const inter = Inter({ subsets: ["latin"] });
 
 //
-export default function Home() {
+export default function NFT() {
   const { setTheme } = useWeb3ModalTheme();
 
   setTheme({
@@ -25,13 +27,12 @@ export default function Home() {
         style={{
           backgroundImage: `url(${BG.src})`,
           backgroundSize: "cover",
-          height: "100%",
         }}
       >
         <Header />
         <div className={"flex min-w-full h-[70vh]"}>
           <SideBar />
-          <Balance />
+          <StakeContent />
         </div>
       </main>
     </div>

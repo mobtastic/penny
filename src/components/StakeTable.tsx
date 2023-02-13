@@ -1,34 +1,67 @@
-import { Estonia } from "@next/font/google";
-
-interface BalanceTableProps {
-  balance: string;
-}
-
-const people = [
+const validator = [
   {
-    name: "CANTO",
-    title: "XXX",
-    email: "XXX",
-    role: "XXX",
+    name: "defipulse",
+    totalStake: "30,400,011",
+    commission: "5",
+    slashes: "0",
   },
   {
-    name: "CINU",
-    title: "XXX",
-    email: "XXX",
-    role: "XXX",
+    name: "valislabs",
+    totalStake: "25,901,154.22",
+    commission: "5",
+    slashes: "0",
   },
   {
-    name: "NOTE",
-    title: "XXX",
-    email: "XXX",
-    role: "XXX",
+    name: "KAISEN",
+    totalStake: "21,333,159",
+    commission: "5",
+    slashes: "0",
   },
-  // More people...
+  {
+    name: "19A4E94EB4EE",
+    totalStake: "17,888,121.66",
+    commission: "10",
+    slashes: "1",
+  },
+  {
+    name: "FC227AF10FDC",
+    totalStake: "16,984,654",
+    commission: "10",
+    slashes: "0",
+  },
+  {
+    name: "CF70C6571CF8",
+    totalStake: "16,842,020.33",
+    commission: "10",
+    slashes: "0",
+  },
+  {
+    name: "F892B0F87E63",
+    totalStake: "16,444,444",
+    commission: "10",
+    slashes: "0",
+  },
+  // {
+  //   name: "Athens-1",
+  //   totalStake: "15,107,420.69",
+  //   commission: "10",
+  //   slashes: "0",
+  // },
+  // {
+  //   name: "Plex",
+  //   totalStake: "15,101,069",
+  //   commission: "10",
+  //   slashes: "0",
+  // },
+  // {
+  //   name: "Four Moons",
+  //   totalStake: "11,407,191",
+  //   commission: "5",
+  //   slashes: "0",
+  // },
 ];
 
-export default function BalanceTable({ balance }: BalanceTableProps) {
-  if (!balance) return null;
-
+export default function StakeTable() {
   return (
     <div>
       <div className="mt-8 flex flex-col">
@@ -42,51 +75,63 @@ export default function BalanceTable({ balance }: BalanceTableProps) {
                       scope="col"
                       className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white-900 sm:pl-6"
                     >
-                      Wallet
+                      Rank
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-white-90"
                     >
-                      Amount
+                      Name
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
                     >
-                      Price
+                      Total Stake
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
                     >
-                      USD Value
+                      Commision
                     </th>
                     <th
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
                     >
-                      Change (24h)
+                      Slashes
                     </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
+                    ></th>
                   </tr>
                 </thead>
                 <tbody className=" divide-gray-200">
-                  {people.map((person) => (
-                    <tr key={person.email}>
+                  {validator.map((validator, index) => (
+                    <tr key={validator.name}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white-900 sm:pl-6">
-                        {person.name}
+                        {index}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.title}
+                        {validator.name}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.email}
+                        {validator.totalStake}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.role}
+                        {validator.commission}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.role}
+                        {validator.slashes}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
+                        <button
+                          type="button"
+                          className="inline-flex items-center justify-center rounded-lg border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"
+                        >
+                          Stake
+                        </button>
                       </td>
                     </tr>
                   ))}
