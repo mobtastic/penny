@@ -36,16 +36,19 @@ export default function Home({ cantoPrice, cinuPrice, notePrice }) {
         name: "CANTO",
         price: cantoPriceUSD,
         change: canto24h,
+        image: "/Canto.png",
       },
       {
         name: "CINU",
         price: cinuPriceUSD,
         change: cinu24h,
+        image: "/Shib.png",
       },
       {
         name: "NOTE",
         price: notePriceUSD,
         change: note24h,
+        image: "/Canto.png",
       }
     );
 
@@ -70,7 +73,7 @@ export default function Home({ cantoPrice, cinuPrice, notePrice }) {
         <Header coingeckoData={coingeckoData} />
         <div className={"flex min-w-full h-[70vh]"}>
           <SideBar />
-          <Balance />
+          <Balance coingeckoData={coingeckoData} />
         </div>
       </main>
     </div>

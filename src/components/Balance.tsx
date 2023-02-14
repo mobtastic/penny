@@ -11,16 +11,26 @@ import { formatedBalance } from "@/utils/EthersUtils";
 import CINU_ABI from "@/abis/CINU_ABI.json";
 import NOTE_ABI from "@/abis/NOTE_ABI.json";
 
-export default function Balance() {
+interface BalanceProps {
+  coingeckoData: any;
+}
+
+export default function Balance({ coingeckoData }: BalanceProps) {
   const { address, isDisconnected } = useAccount();
   const [balance, setBalance] = useState("");
   const [aggregateBalance, setAggregateBalance] = useState();
+
+  console.log("coingeckoData", coingeckoData);
 
   const getBalance = useCallback(async () => {
     const balance = await cantoProvider.getBalance(address);
     const balanceInEth = ethers.utils.formatEther(balance);
     setBalance(balanceInEth.toString());
   }, [address]);
+
+  // const calculatePortfolioBalance = useCallback(() => {
+
+  // }, [aggregateBalance])
 
   const checkCINUBalance = useCallback(async () => {
     // Get CUINU balance;
@@ -29,7 +39,10 @@ export default function Balance() {
     const balanceInEth = ethers.utils.formatEther(tempbalance);
     aggBalance.push({
       name: "CANTO",
+      image: "/Canto.png",
       amount: balanceInEth,
+      price: coingeckoData[0]?.price,
+      change: coingeckoData[0]?.change,
     });
 
     const CINUcontractAddress = "0x7264610A66EcA758A8ce95CF11Ff5741E1fd0455";
@@ -44,7 +57,10 @@ export default function Balance() {
     if (cinuBalance > 0) {
       aggBalance.push({
         name: "CINU",
+        image: "/Shib.png",
         amount: formatedBalance(cinuBalance),
+        price: coingeckoData[1]?.price,
+        change: coingeckoData[1]?.change,
       });
     }
     // Get Note balance;
@@ -60,7 +76,10 @@ export default function Balance() {
     if (noteBalance > 0) {
       aggBalance.push({
         name: "NOTE",
+        image: "/Canto.png",
         amount: formatedBalance(noteBalance),
+        price: coingeckoData[2]?.price,
+        change: coingeckoData[2]?.change,
       });
     }
     // Get ATOM balance;
@@ -68,7 +87,7 @@ export default function Balance() {
     setAggregateBalance([...aggBalance]);
 
     // Get USDC balance;
-  }, [address, balance]);
+  }, [address, coingeckoData]);
 
   useEffect(() => {
     if (address) {
@@ -79,7 +98,7 @@ export default function Balance() {
     if (isDisconnected) {
       setBalance("");
     }
-  }, [address, isDisconnected]);
+  }, [address, checkCINUBalance, getBalance, isDisconnected, coingeckoData]);
 
   // ToDo list:
   // 1. Add a loading state

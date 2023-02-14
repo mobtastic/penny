@@ -18,26 +18,24 @@ const navigation = [
   { name: "Home", href: "/", icon: HomeIcon, current: true },
   { name: "NFTs", href: "/nft", icon: UsersIcon, current: false },
   { name: "Stake", href: "/stake", icon: FolderIcon, current: false },
-  {
-    name: "Analytics (Soon)",
-    href: "#",
-    icon: CalendarIcon,
-    current: false,
-  },
-  {
-    name: "Discover (Soon)",
-    href: "#",
-    icon: InboxIcon,
-    current: false,
-  },
-  { name: "Swap (Soon)", href: "#", icon: ChartBarIcon, current: false },
+  // {
+  //   name: "Analytics (Soon)",
+  //   href: "#",
+  //   icon: CalendarIcon,
+  //   current: false,
+  // },
+  // {
+  //   name: "Discover (Soon)",
+  //   href: "#",
+  //   icon: InboxIcon,
+  //   current: false,
+  // },
+  // { name: "Swap (Soon)", href: "#", icon: ChartBarIcon, current: false },
 ];
 
 export default function SideBar() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   return (
-    <div className="w-64 border-r border-r-[#2D312F] mt-8">
+    <div className="w-48 border-r border-r-[#2D312F] mt-8">
       {navigation.map((item) => (
         <a
           key={item.name}

@@ -14,7 +14,6 @@ interface HeaderProps {
 
 export default function Header({ coingeckoData }: HeaderProps) {
   const { setTheme } = useWeb3ModalTheme();
-  console.log(" Header coingeckoData", coingeckoData);
   setTheme({
     themeMode: "dark",
     themeColor: "green",
@@ -41,34 +40,6 @@ export default function Header({ coingeckoData }: HeaderProps) {
     }
   }
 
-  const dummyData = [
-    {
-      name: "CANTO",
-      balance: "1.10",
-      change: 0.023,
-    },
-    {
-      name: "ATOM",
-      balance: "13.38",
-      change: 0.023,
-    },
-    {
-      name: "CINU",
-      balance: "0.0128",
-      change: -0.023,
-    },
-    {
-      name: "CANTO",
-      balance: "1.10",
-      change: 0.023,
-    },
-    {
-      name: "ATOM",
-      balance: "13.38",
-      change: 0.023,
-    },
-  ];
-
   return (
     <>
       <Head>
@@ -83,7 +54,16 @@ export default function Header({ coingeckoData }: HeaderProps) {
           {coingeckoData?.map((data, index) => (
             <div key={index} className={styles.scrollingTextItem}>
               <div className="flex">
-                <p className="mr-2">{data.name}</p>
+                <div className="flex justify-center items-start">
+                  <Image
+                    src={data.image}
+                    alt={data.name}
+                    width={25}
+                    height={25}
+                    className="mr-2"
+                  />
+                  <p className="mr-2">{data.name}</p>
+                </div>
                 <p className="mr-2">${formatTwoDecimals(data.price)}</p>
                 <p
                   className={
