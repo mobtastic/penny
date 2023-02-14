@@ -6,10 +6,15 @@ import { useWeb3Modal } from "@web3modal/react";
 import { useAccount, useDisconnect } from "wagmi";
 import { useState } from "react";
 import styles from "@/styles/Home.module.css";
+import { formatTwoDecimals } from "@/utils/MathUtils";
 
-export default function Header() {
+interface HeaderProps {
+  coingeckoData: any;
+}
+
+export default function Header({ coingeckoData }: HeaderProps) {
   const { setTheme } = useWeb3ModalTheme();
-
+  console.log(" Header coingeckoData", coingeckoData);
   setTheme({
     themeMode: "dark",
     themeColor: "green",
@@ -75,11 +80,20 @@ export default function Header() {
       <div className="flex flex-row min-w-full justify-between ">
         <Image src="/Logo.png" alt="Penny Logo" width={50} height={50} />
         <div className="flex w-3/4 justify-center items-center overflow-hidden border-t border-b border-t-[#2D312F] border-b-[#2D312F] background-black ">
-          {dummyData.map((data, index) => (
+          {coingeckoData?.map((data, index) => (
             <div key={index} className={styles.scrollingTextItem}>
-              {`${data.name}  $${data.balance} (${data.change > 0 ? "+" : "-"}${
-                data.change * 100
-              }%)`}
+              <div className="flex">
+                <p className="mr-2">{data.name}</p>
+                <p className="mr-2">${formatTwoDecimals(data.price)}</p>
+                <p
+                  className={
+                    data.price > 0 ? "text-[#E0FF84]" : "text-[#ED0051]"
+                  }
+                >
+                  {data.price > 0 ? "+" : "-"}
+                  {formatTwoDecimals(data.price)}%
+                </p>
+              </div>
             </div>
           ))}
         </div>

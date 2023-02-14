@@ -297,9 +297,11 @@
 }
 
 .scrollingTextItem {
-  animation: scrolling 5s linear infinite;
+  animation: scrolling 8s linear infinite;
   backface-visibility: hidden;
-  margin-right: 1em;
+  overflow: hidden;
+  margin-right: 10em;
+  white-space: nowrap;
 }
 
 .gradientBG {

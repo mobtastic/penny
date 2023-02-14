@@ -2,31 +2,13 @@ import { Estonia } from "@next/font/google";
 
 interface BalanceTableProps {
   balance: string;
+  aggregateBalance: any;
 }
 
-const people = [
-  {
-    name: "CANTO",
-    title: "XXX",
-    email: "XXX",
-    role: "XXX",
-  },
-  {
-    name: "CINU",
-    title: "XXX",
-    email: "XXX",
-    role: "XXX",
-  },
-  {
-    name: "NOTE",
-    title: "XXX",
-    email: "XXX",
-    role: "XXX",
-  },
-  // More people...
-];
-
-export default function BalanceTable({ balance }: BalanceTableProps) {
+export default function BalanceTable({
+  balance,
+  aggregateBalance,
+}: BalanceTableProps) {
   if (!balance) return null;
 
   return (
@@ -71,22 +53,22 @@ export default function BalanceTable({ balance }: BalanceTableProps) {
                   </tr>
                 </thead>
                 <tbody className=" divide-gray-200">
-                  {people.map((person) => (
-                    <tr key={person.email}>
+                  {aggregateBalance?.map((token) => (
+                    <tr key={token.name}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white-900 sm:pl-6">
-                        {person.name}
+                        {token.name}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.title}
+                        {Math.round(token.amount).toFixed(2)}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.email}
+                        {token.price}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.role}
+                        {token.usdAmount}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
-                        {person.role}
+                        {token.change24}
                       </td>
                     </tr>
                   ))}
