@@ -131,14 +131,14 @@ export default function Balance({ coingeckoData }: BalanceProps) {
 
   return (
     <>
-      <div className="w-full p-6 pr-0 ">
-        <PortfolioBalance balance={portfolioBalance} />
+      <div className="w-full p-4 pr-0 ">
+        {address && <PortfolioBalance balance={portfolioBalance} />}
         {!address && (
           <div className="flex flex-col justify-center items-center">
             <Image src="/Logo.png" alt="Penny Logo" width={125} height={125} />
             <Image
               src="/PennyText.png"
-              className="my-8"
+              className="my-6"
               alt="Coin"
               width={143}
               height={46}
@@ -148,40 +148,36 @@ export default function Balance({ coingeckoData }: BalanceProps) {
               Your <span className={styles.sideBarTextGradient}>home</span> in
               CANTO
             </p>
-            <div className="flex flex-row pt-12">
+            <div className="flex flex-row pt-6">
               <div className="mr-10 h-64 w-64 flex justify-center items-center flex-col">
                 <Image src="/CoinPixel.png" alt="Coin" width={40} height={40} />
-                <p className="text-2xl mt-8 font-bold text-center h-18 ">
+                <p className="text-xl mt-8 font-bold text-center h-18 ">
                   Your portfolio
                 </p>
-                <p className="text-xl mt-8 text-center">
+                <p className="text-md mt-4 text-center">
                   View, track prices and trends of all your Canto tokens.
                 </p>
               </div>
               <div className="mr-10 h-64 w-64 flex justify-center items-center flex-col ">
                 <Image src="/NFTPixel.png" alt="NFT" width={40} height={40} />
-                <p className="text-2xl mt-8 font-bold text-center h-18 ">
+                <p className="text-xl mt-8 font-bold text-center h-18 ">
                   Collect NFTs
                 </p>
-                <p className="text-xl mt-8 text-center ">
+                <p className="text-md mt-4 text-center">
                   View and buy your NFTs across all NFT marketplaces in Canto.
                 </p>
               </div>
               <div className="w-64 h-64 flex justify-center items-center flex-col ">
                 <Image src="/Canto.png" alt="Canto" width={40} height={40} />
-                <p className="text-2xl mt-8 font-bold text-center h-18 ">
+                <p className="text-xl mt-8 font-bold text-center h-18 ">
                   Discover CANTO
                 </p>
-                <p className="text-xl mt-8 text-center">
+                <p className="text-md mt-4 text-center">
                   Get the real alpha with news, on-chain activity to see whats
                   hot in Canto.
                 </p>
               </div>
             </div>
-
-            {/* <div style={{ width: "100%", height: 135, position: "relative" }}>
-              <Image src="/EmptyFooter.png" alt="Penny Logo" fill />
-            </div> */}
           </div>
         )}
         <BalanceTable balance={balance} aggregateBalance={aggregateBalance} />

@@ -32,7 +32,7 @@ export default function NFTContent() {
       <div className="flex flex-row">
         {NFTData.map((nft) => (
           <div
-            className="rounded-lg bg-[#2E2E2E] mr-8 w-[250px] "
+            className="rounded-lg bg-[#2E2E2E] mr-6 w-[200px] "
             key={nft.name}
           >
             <Image
