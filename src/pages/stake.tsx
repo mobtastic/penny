@@ -1,11 +1,4 @@
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
-import { useWeb3ModalTheme } from "@web3modal/react";
-import Header from "@/components/Header";
-import SideBar from "@/components/SideBar";
-import Balance from "@/components/Balance";
-import BG from "../../public/BG.png";
-import BalanceTable from "@/components/BalanceTable";
 import StakeContent from "@/components/StakeContent";
 import { useCallback, useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";

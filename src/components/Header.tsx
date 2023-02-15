@@ -67,11 +67,11 @@ export default function Header({ coingeckoData }: HeaderProps) {
                 <p className="mr-2">${formatTwoDecimals(data.price)}</p>
                 <p
                   className={
-                    data.price > 0 ? "text-[#E0FF84]" : "text-[#ED0051]"
+                    data.change > 0 ? "text-[#E0FF84]" : "text-[#ED0051]"
                   }
                 >
                   {data.price > 0 ? "+" : "-"}
-                  {formatTwoDecimals(data.price)}%
+                  {formatTwoDecimals(data.change)}%
                 </p>
               </div>
             </div>
