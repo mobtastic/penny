@@ -314,7 +314,7 @@
 .sideBarText {
   fontcolor: #ffffff70;
   font-weight: 600;
-  font-size: 18;
+  font-size: 24;
   width: 100%;
 }
 
@@ -323,6 +323,46 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
-  font-size: 18;
+  font-size: 20;
+  margin-right: 4px;
 }
 
+.sideBarTextGradient {
+  background: linear-gradient(to right, #00ffa0 0%, #e0ff84 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.sideBarTextGradientSB {
+  background: linear-gradient(to right, #00ffa0 0%, #e0ff84 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  font-size: 1.15rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+
+.sideBarTextGradientSoon {
+  background: linear-gradient(to right, #00ffa0 0%, #e0ff84 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.sideBarTextGradientIcon {
+  background: linear-gradient(to right, #00ffa0 0%, #e0ff84 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  height: 18px;
+  width: 24px;
+}
+
+.iconLinearBG {
+  width: 15px;
+  height: 15px;
+  margin-right: 4px;
+}

@@ -1,77 +1,77 @@
-import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
-import { useWeb3ModalTheme } from "@web3modal/react";
-import Header from "@/components/Header";
-import SideBar from "@/components/SideBar";
-import Balance from "@/components/Balance";
-import BG from "../../public/BG.png";
+import { Layout } from "@/components/Layout";
+import NFTContent from "@/components/NFTContent";
+import { useState, useCallback, useEffect } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+//@ts-ignore
+export default function NFT({ cantoPrice, cinuPrice, notePrice }) {
+  const [coingeckoData, setCoingeckoData] = useState();
 
-const NFTData = [
-  {
-    name: "Canto Longnecks",
-    floorPrice: "3,900",
-    estimatedValue: "2,028",
-    imageURL: "https://i.imgur.com/DJkYTl2.gif",
-  },
-  {
-    name: "DEAD ENDS",
-    floorPrice: "2,300",
-    estimatedValue: "1,196",
-    imageURL: "https://i.imgur.com/f6Sr2YD.png",
-  },
-  {
-    name: "Shnoises",
-    floorPrice: "400",
-    estimatedValue: "208",
-    imageURL: "https://i.imgur.com/Rmoh5On.png",
-  },
-  {
-    name: "Speranza",
-    floorPrice: "277",
-    estimatedValue: "144.04",
-    imageURL: "https://i.imgur.com/nUtIwEg.jpg",
-  },
-];
+  const getCoinGeckoData = useCallback(async () => {
+    const cantoPriceUSD = cantoPrice.prices[0][1];
+    const cinuPriceUSD = cinuPrice.prices[0][1];
+    const notePriceUSD = notePrice.prices[0][1];
+    const canto24h =
+      (1 - cantoPrice.prices[0][1] / cantoPrice.prices[1][1]) * 100;
+    const cinu24h = (1 - cinuPrice.prices[0][1] / cinuPrice.prices[1][1]) * 100;
+    const note24h = (1 - notePrice.prices[0][1] / notePrice.prices[1][1]) * 100;
 
-export default function NFT() {
-  const { setTheme } = useWeb3ModalTheme();
+    let tempArray = [];
+    tempArray.push(
+      {
+        name: "CANTO",
+        price: cantoPriceUSD,
+        change: canto24h,
+        image: "/Canto.png",
+      },
+      {
+        name: "CINU",
+        price: cinuPriceUSD,
+        change: cinu24h,
+        image: "/Shib.png",
+      },
+      {
+        name: "NOTE",
+        price: notePriceUSD,
+        change: note24h,
+        image: "/note.svg",
+      }
+    );
 
-  setTheme({
-    themeMode: "dark",
-    themeColor: "green",
-    themeBackground: "gradient",
-  });
+    // @ts-ignore
+    setCoingeckoData([...tempArray]);
+    // Current USD Price
+  }, [coingeckoData]);
+
+  useEffect(() => {
+    getCoinGeckoData();
+  }, []);
 
   return (
-    <div>
-      <main
-        className={styles.main}
-        style={{
-          backgroundImage: `url(${BG.src})`,
-          backgroundSize: "cover",
-        }}
-      >
-        <Header />
-        <div className={"flex min-w-full h-[70vh]"}>
-          <SideBar />
-          <div className="flex flex-row p-16 ">
-            {NFTData.map((nft) => (
-              <div
-                className="w-1/4 h-48 bg-[#2E2E2E] rounded-md mr-8"
-                key={nft.name}
-              >
-                <p>{nft.name}</p>
-                <p>Floor Price</p>
-                <p>{nft.floorPrice}</p>
-                <p>Total Estimated Value</p>
-                <p>{nft.estimatedValue}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </main>
-    </div>
+    <Layout coingeckoData={coingeckoData}>
+      <NFTContent />
+    </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const cantoData = await fetch(
+    "https://api.coingecko.com/api/v3/coins/canto/market_chart?vs_currency=usd&days=1&interval=daily"
+  );
+  const cantoPrice = await cantoData.json();
+
+  const cinuData = await fetch(
+    "https://api.coingecko.com/api/v3/coins/canto-inu/market_chart?vs_currency=usd&days=1&interval=daily"
+  );
+  const cinuPrice = await cinuData.json();
+
+  const noteData = await fetch(
+    "https://api.coingecko.com/api/v3/coins/note/market_chart?vs_currency=usd&days=1&interval=daily"
+  );
+  const notePrice = await noteData.json();
+
+  if (!cantoData || !cinuData || !noteData) {
+    return { notFound: true };
+  }
+
+  return { props: { cantoPrice, cinuPrice, notePrice } };
 }

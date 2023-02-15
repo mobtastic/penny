@@ -12,7 +12,7 @@ export default function BalanceTable({
   if (!balance) return null;
 
   return (
-    <div className="px-10">
+    <div className="px-8">
       <div className="mt-10 flex flex-col px-10 border border-[#57575766] rounded-xl py-10">
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -55,7 +55,7 @@ export default function BalanceTable({
                 <tbody>
                   {aggregateBalance?.map((token: any) => (
                     <tr key={token.name}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white-900 sm:pl-6 text-lg flex	 ">
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium text-white-900 sm:pl-6 text-md flex	 ">
                         <Image
                           src={token.image}
                           alt={token.name}
@@ -65,16 +65,16 @@ export default function BalanceTable({
                         />
                         {token.name}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500 text-lg	">
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500 	">
                         {formatTwoDecimals(token.amount)}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500 text-lg	">
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500 ">
                         {formatTwoDecimals(token.price)}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500 text-lg	">
-                        {calculateHoldings(token.amount, token.price)}
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500 	">
+                        ${calculateHoldings(token.amount, token.price)}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500 text-lg	">
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500 	">
                         <p
                           className={
                             token.change > 0

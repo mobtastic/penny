@@ -21,6 +21,7 @@ export default function Balance({ coingeckoData }: BalanceProps) {
   const { address, isDisconnected } = useAccount();
   const [balance, setBalance] = useState("");
   const [aggregateBalance, setAggregateBalance] = useState();
+  const [portfolioBalance, setPortfolioBalance] = useState();
 
   // console.log("coingeckoData", coingeckoData);
 
@@ -35,6 +36,7 @@ export default function Balance({ coingeckoData }: BalanceProps) {
   // }, [aggregateBalance])
 
   const checkCINUBalance = useCallback(async () => {
+    let tempPortfolioBalance;
     // Get CUINU balance;
     let aggBalance = [];
     const tempbalance = await cantoProvider.getBalance(address);
@@ -84,8 +86,20 @@ export default function Balance({ coingeckoData }: BalanceProps) {
         change: coingeckoData[2]?.change,
       });
     }
+
+    //@ts-ignore
+    tempPortfolioBalance =
+      //@ts-ignore
+      coingeckoData[0]?.price * balanceInEth +
+      //@ts-ignore
+      formatedBalance(cinuBalance) * coingeckoData[1]?.price +
+      //@ts-ignore
+      formatedBalance(noteBalance) * coingeckoData[2]?.price;
+
+    //@ts-ignore
+    setPortfolioBalance(tempPortfolioBalance);
+
     // Get ATOM balance;
-    console.log("aggBalance", aggBalance);
     //@ts-ignore
     setAggregateBalance([...aggBalance]);
     // Get USDC balance;
@@ -100,7 +114,14 @@ export default function Balance({ coingeckoData }: BalanceProps) {
     if (isDisconnected) {
       setBalance("");
     }
-  }, [address, checkCINUBalance, getBalance, isDisconnected, coingeckoData]);
+  }, [
+    address,
+    checkCINUBalance,
+    getBalance,
+    isDisconnected,
+    coingeckoData,
+    portfolioBalance,
+  ]);
 
   // ToDo list:
   // 1. Add a loading state
@@ -111,7 +132,7 @@ export default function Balance({ coingeckoData }: BalanceProps) {
   return (
     <>
       <div className="w-full p-6 pr-0 ">
-        <PortfolioBalance balance={balance} />
+        <PortfolioBalance balance={portfolioBalance} />
         {!address && (
           <div className="flex flex-col justify-center items-center">
             <Image src="/Logo.png" alt="Penny Logo" width={125} height={125} />

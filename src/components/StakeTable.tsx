@@ -73,59 +73,59 @@ export default function StakeTable() {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white-900 sm:pl-6"
+                      className="py-3.5 pl-4 pr-3 text-left text-md font-semibold text-white-900 sm:pl-6"
                     >
                       Rank
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-white-90"
+                      className="px-3 py-3.5 text-left text-md font-semibold text-white-90"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
+                      className="px-3 py-3.5 text-left text-md font-semibold text-white-900"
                     >
                       Total Stake
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
+                      className="px-3 py-3.5 text-left text-md font-semibold text-white-900"
                     >
                       Commision
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
+                      className="px-3 py-3.5 text-left text-md font-semibold text-white-900"
                     >
                       Slashes
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-white-900"
+                      className="px-3 py-3.5 text-left text-md font-semibold text-white-900"
                     ></th>
                   </tr>
                 </thead>
                 <tbody className=" divide-gray-200">
                   {validator.map((validator, index) => (
                     <tr key={validator.name}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white-900 sm:pl-6">
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-md font-medium text-white-900 sm:pl-6">
                         {index}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500">
                         {validator.name}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500">
                         {validator.totalStake}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500">
                         {validator.commission}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-smdm text-white-500">
                         {validator.slashes}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-md text-white-500">
                         <button
                           type="button"
                           className="inline-flex items-center justify-center rounded-lg border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"

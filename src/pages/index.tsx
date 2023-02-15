@@ -56,7 +56,7 @@ export default function Home({ cantoPrice, cinuPrice, notePrice }) {
     // @ts-ignore
     setCoingeckoData([...tempArray]);
     // Current USD Price
-  }, [coingeckoData]);
+  }, [cantoPrice.prices, cinuPrice.prices, notePrice.prices]);
 
   useEffect(() => {
     getCoinGeckoData();

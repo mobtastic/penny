@@ -9,6 +9,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ["i.imgur.com"],
+  },
 };
 
 module.exports = nextConfig;

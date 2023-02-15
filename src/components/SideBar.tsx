@@ -1,39 +1,64 @@
-import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
-import {
-  Bars3BottomLeftIcon,
-  BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import styles from "@/styles/Home.module.css";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 const navigation = [
-  { name: "Home", href: "/", icon: HomeIcon, current: true },
-  { name: "NFTs", href: "/nft", icon: UsersIcon, current: false },
-  { name: "Stake", href: "/stake", icon: FolderIcon, current: false },
   {
-    name: "Analytics (Soon)",
-    href: "#",
-    icon: CalendarIcon,
-    current: false,
+    name: "Home",
+    href: "/",
+    icon: "/Home.png",
+    gradientIcon: "/HomeGradient.png",
+    soon: false,
   },
   {
-    name: "Discover (Soon)",
-    href: "#",
-    icon: InboxIcon,
-    current: false,
+    name: "NFTs",
+    href: "/nft",
+    icon: "/NFTs.png",
+    gradientIcon: "/NFTGradient.png",
+    soon: false,
   },
-  { name: "Swap (Soon)", href: "#", icon: ChartBarIcon, current: false },
+  {
+    name: "Stake",
+    href: "/stake",
+    icon: "/Stake.png",
+    gradientIcon: "/StakeGradient.png",
+    soon: false,
+  },
+  {
+    name: "Swap",
+    href: "/swap",
+    icon: "/Swap.png",
+    gradientIcon: "/HomeGradient.png",
+    soon: true,
+  },
+  {
+    name: "Analytics",
+    href: "#",
+    gradientIcon: "/HomeGradient.png",
+    icon: "/Analytics.png",
+    soon: true,
+  },
+  {
+    name: "Discover",
+    href: "#",
+    icon: "/Discover.png",
+    gradientIcon: "/HomeGradient.png",
+    soon: true,
+  },
 ];
 
 export default function SideBar() {
+  let router = useRouter();
+
+  const whiteText =
+    "text-white text-lg hover:bg-gray-50/[.06] hover:rounded-md hover:text-gray-100 flex justify-start items-center my-1";
+
+  const gradientText =
+    "text-green-100 hover:bg-gray-50/[.06] hover:rounded-md hover:text-gray-100 flex justify-start items-center ";
+
+  const test =
+    "text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 flex justify-start items-center";
+  // console.log("route", router.pathname);
   return (
     <div className="w-72 border-r border-r-[#2D312F] mt-8">
       {navigation.map((item) => (
@@ -41,12 +66,37 @@ export default function SideBar() {
           key={item.name}
           href={item.href}
           className={
-            " text-white hover:bg-gray-50/[.06] hover:rounded-md hover:text-gray-100 flex justify-start items-center"
+            router.asPath === item.href
+              ? styles.sideBarTextGradientSB
+              : whiteText
           }
         >
-          <item.icon className={"mr-4 w-10 h-10"} aria-hidden="true" />
+          <div className={styles.iconLinearBG}>
+            {router.asPath === item.href ? (
+              <Image
+                src={item.gradientIcon}
+                alt="Logo"
+                width={30}
+                height={30}
+                className={styles.sideBarTextGradientIcon}
+              />
+            ) : (
+              <Image
+                src={item.icon}
+                alt="Logo"
+                width={30}
+                height={30}
+                className={styles.sideBarTextGradientIcon}
+              />
+            )}
+          </div>
 
-          <h1 className={styles.sideBarText}>{item.name}</h1>
+          <div className="flex">
+            <h1 className={styles.sideBarText}>{item.name}</h1>
+            {item.soon && (
+              <h1 className={styles.sideBarTextGradientSoon}>Soon™️</h1>
+            )}
+          </div>
         </a>
       ))}
     </div>

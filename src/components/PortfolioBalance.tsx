@@ -1,7 +1,8 @@
+import { formatTwoDecimals } from "@/utils/MathUtils";
 import balanceContainer from "../../public/Balance.png";
 
 interface PortfolioBalanceProps {
-  balance: string;
+  balance: any;
 }
 
 //ToDo: Fix the centering of image, hardcode the ml-16 atm
@@ -22,7 +23,9 @@ export default function PortfolioBalance({ balance }: PortfolioBalanceProps) {
       >
         <div className="flex flex-col text-black justify-center items-center ml-8">
           <h1 className={balance ? "text-4xl font-bold" : "text-2xl"}>
-            {balance ? balance + " CANTO" : "Connect Wallet"}
+            {balance
+              ? " $" + formatTwoDecimals(balance) + " USD"
+              : "Connect Wallet"}
           </h1>
           {balance && <h1 className="mt-2">Portfolio Balance</h1>}
         </div>
