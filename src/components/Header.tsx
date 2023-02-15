@@ -70,7 +70,7 @@ export default function Header({ coingeckoData }: HeaderProps) {
                     data.change > 0 ? "text-[#E0FF84]" : "text-[#ED0051]"
                   }
                 >
-                  {data.price > 0 ? "+" : "-"}
+                  {data.change > 0 ? "+" : "-"}
                   {formatTwoDecimals(data.change)}%
                 </p>
               </div>
