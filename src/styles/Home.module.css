@@ -300,7 +300,7 @@
   animation: scrolling 8s linear infinite;
   backface-visibility: hidden;
   overflow: hidden;
-  margin-right: 8em;
+  margin-right: 6em;
   white-space: nowrap;
 }
 
