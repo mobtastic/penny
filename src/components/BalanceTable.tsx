@@ -1,5 +1,4 @@
-import { formatTwoDecimals } from "@/utils/MathUtils";
-import { Estonia } from "@next/font/google";
+import { calculateHoldings, formatTwoDecimals } from "@/utils/MathUtils";
 import Image from "next/image";
 interface BalanceTableProps {
   balance: string;
@@ -54,7 +53,7 @@ export default function BalanceTable({
                   </tr>
                 </thead>
                 <tbody>
-                  {aggregateBalance?.map((token) => (
+                  {aggregateBalance?.map((token: any) => (
                     <tr key={token.name}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white-900 sm:pl-6 text-lg flex	 ">
                         <Image
@@ -73,8 +72,7 @@ export default function BalanceTable({
                         {formatTwoDecimals(token.price)}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500 text-lg	">
-                        {formatTwoDecimals(token.price) *
-                          formatTwoDecimals(token.amount)}
+                        {calculateHoldings(token.amount, token.price)}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-white-500 text-lg	">
                         <p

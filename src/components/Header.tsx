@@ -9,7 +9,7 @@ import styles from "@/styles/Home.module.css";
 import { formatTwoDecimals } from "@/utils/MathUtils";
 
 interface HeaderProps {
-  coingeckoData: any;
+  coingeckoData?: any;
 }
 
 export default function Header({ coingeckoData }: HeaderProps) {
@@ -51,7 +51,7 @@ export default function Header({ coingeckoData }: HeaderProps) {
       <div className="flex flex-row min-w-full justify-between ">
         <Image src="/Logo.png" alt="Penny Logo" width={50} height={50} />
         <div className="flex w-3/4 justify-center items-center overflow-hidden border-t border-b border-t-[#2D312F] border-b-[#2D312F] background-black ">
-          {coingeckoData?.map((data, index) => (
+          {coingeckoData?.map((data: any, index: number) => (
             <div key={index} className={styles.scrollingTextItem}>
               <div className="flex">
                 <div className="flex justify-center items-start">

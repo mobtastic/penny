@@ -316,10 +316,7 @@
   font-weight: 600;
   font-size: 18;
   width: 100%;
-  /* font: {
-    size: 20vw;
-    family: $font;
-  }
+}
 
 .sideBarTextGradient {
   background: linear-gradient(to right, #00ffa0 0%, #e0ff84 100%);
@@ -327,9 +324,5 @@
   -webkit-text-fill-color: transparent;
   font-weight: 600;
   font-size: 18;
-  width: 100%;
-  /* font: {
-    size: 20vw;
-    family: $font;
-  } */
 }
+

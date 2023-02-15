@@ -6,10 +6,11 @@ import SideBar from "@/components/SideBar";
 import Balance from "@/components/Balance";
 import BG from "../../public/BG.png";
 import { useCallback, useEffect, useState } from "react";
+import { Layout } from "@/components/Layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
-//
+// @ts-ignore
 export default function Home({ cantoPrice, cinuPrice, notePrice }) {
   const { setTheme } = useWeb3ModalTheme();
   const [coingeckoData, setCoingeckoData] = useState();
@@ -48,10 +49,11 @@ export default function Home({ cantoPrice, cinuPrice, notePrice }) {
         name: "NOTE",
         price: notePriceUSD,
         change: note24h,
-        image: "/Canto.png",
+        image: "/note.svg",
       }
     );
 
+    // @ts-ignore
     setCoingeckoData([...tempArray]);
     // Current USD Price
   }, [coingeckoData]);
@@ -61,22 +63,9 @@ export default function Home({ cantoPrice, cinuPrice, notePrice }) {
   }, []);
 
   return (
-    <div>
-      <main
-        className={styles.main}
-        style={{
-          backgroundImage: `url(${BG.src})`,
-          backgroundSize: "cover",
-          height: "100%",
-        }}
-      >
-        <Header coingeckoData={coingeckoData} />
-        <div className={"flex min-w-full h-[70vh]"}>
-          <SideBar />
-          <Balance coingeckoData={coingeckoData} />
-        </div>
-      </main>
-    </div>
+    <Layout coingeckoData={coingeckoData}>
+      <Balance coingeckoData={coingeckoData} />
+    </Layout>
   );
 }
 

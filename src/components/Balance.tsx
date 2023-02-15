@@ -2,6 +2,7 @@ import { cantoProvider } from "@/pages/_app";
 import { ethers } from "ethers";
 import { useCallback, useEffect, useState } from "react";
 import { useAccount } from "wagmi";
+import Image from "next/image";
 
 import BalanceTable from "./BalanceTable";
 import PortfolioBalance from "./PortfolioBalance";
@@ -10,6 +11,7 @@ import { formatedBalance } from "@/utils/EthersUtils";
 
 import CINU_ABI from "@/abis/CINU_ABI.json";
 import NOTE_ABI from "@/abis/NOTE_ABI.json";
+import styles from "@/styles/Home.module.css";
 
 interface BalanceProps {
   coingeckoData: any;
@@ -20,7 +22,7 @@ export default function Balance({ coingeckoData }: BalanceProps) {
   const [balance, setBalance] = useState("");
   const [aggregateBalance, setAggregateBalance] = useState();
 
-  console.log("coingeckoData", coingeckoData);
+  // console.log("coingeckoData", coingeckoData);
 
   const getBalance = useCallback(async () => {
     const balance = await cantoProvider.getBalance(address);
@@ -76,7 +78,7 @@ export default function Balance({ coingeckoData }: BalanceProps) {
     if (noteBalance > 0) {
       aggBalance.push({
         name: "NOTE",
-        image: "/Canto.png",
+        image: "/note.svg",
         amount: formatedBalance(noteBalance),
         price: coingeckoData[2]?.price,
         change: coingeckoData[2]?.change,
@@ -84,8 +86,8 @@ export default function Balance({ coingeckoData }: BalanceProps) {
     }
     // Get ATOM balance;
     console.log("aggBalance", aggBalance);
+    //@ts-ignore
     setAggregateBalance([...aggBalance]);
-
     // Get USDC balance;
   }, [address, coingeckoData]);
 
@@ -110,7 +112,57 @@ export default function Balance({ coingeckoData }: BalanceProps) {
     <>
       <div className="w-full p-6 pr-0 ">
         <PortfolioBalance balance={balance} />
+        {!address && (
+          <div className="flex flex-col justify-center items-center">
+            <Image src="/Logo.png" alt="Penny Logo" width={125} height={125} />
+            <Image
+              src="/PennyText.png"
+              className="my-8"
+              alt="Coin"
+              width={143}
+              height={46}
+            />
 
+            <p className="text-4xl font-bold">
+              Your <span className={styles.sideBarTextGradient}>home</span> in
+              CANTO
+            </p>
+            <div className="flex flex-row pt-12">
+              <div className="mr-10 h-64 w-64 flex justify-center items-center flex-col">
+                <Image src="/CoinPixel.png" alt="Coin" width={40} height={40} />
+                <p className="text-2xl mt-8 font-bold text-center h-18 ">
+                  Your portfolio
+                </p>
+                <p className="text-xl mt-8 text-center">
+                  View, track prices and trends of all your Canto tokens.
+                </p>
+              </div>
+              <div className="mr-10 h-64 w-64 flex justify-center items-center flex-col ">
+                <Image src="/NFTPixel.png" alt="NFT" width={40} height={40} />
+                <p className="text-2xl mt-8 font-bold text-center h-18 ">
+                  Collect NFTs
+                </p>
+                <p className="text-xl mt-8 text-center ">
+                  View and buy your NFTs across all NFT marketplaces in Canto.
+                </p>
+              </div>
+              <div className="w-64 h-64 flex justify-center items-center flex-col ">
+                <Image src="/Canto.png" alt="Canto" width={40} height={40} />
+                <p className="text-2xl mt-8 font-bold text-center h-18 ">
+                  Discover CANTO
+                </p>
+                <p className="text-xl mt-8 text-center">
+                  Get the real alpha with news, on-chain activity to see whats
+                  hot in Canto.
+                </p>
+              </div>
+            </div>
+
+            {/* <div style={{ width: "100%", height: 135, position: "relative" }}>
+              <Image src="/EmptyFooter.png" alt="Penny Logo" fill />
+            </div> */}
+          </div>
+        )}
         <BalanceTable balance={balance} aggregateBalance={aggregateBalance} />
       </div>
     </>

@@ -9,6 +9,8 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { canto } from "wagmi/chains";
+import { Layout } from "@/components/Layout";
+import { useCallback, useEffect, useState } from "react";
 const ethers = require("ethers");
 
 export let cantoProvider = new ethers.providers.JsonRpcProvider(
