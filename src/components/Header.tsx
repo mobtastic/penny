@@ -60,7 +60,12 @@ export default function Header({ coingeckoData }: HeaderProps) {
                     alt={data.name}
                     width={25}
                     height={25}
-                    style={{ width: "25px", height: "25px" }}
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      borderRadius: "50%",
+                      marginRight: "10px",
+                    }}
                     // className="mr-2"
                   />
                   <p>{data.name}</p>
