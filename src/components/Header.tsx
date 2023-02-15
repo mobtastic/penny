@@ -60,11 +60,11 @@ export default function Header({ coingeckoData }: HeaderProps) {
                     alt={data.name}
                     width={25}
                     height={25}
-                    className="mr-2"
+                    // className="mr-2"
                   />
-                  <p className="mr-2">{data.name}</p>
+                  <p>{data.name}</p>
                 </div>
-                <p className="mr-2">${formatTwoDecimals(data.price)}</p>
+                <p className="mx-4">${formatTwoDecimals(data.price)}</p>
                 <p
                   className={
                     data.change > 0 ? "text-[#E0FF84]" : "text-[#ED0051]"
