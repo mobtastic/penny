@@ -180,7 +180,9 @@ export default function Balance({ coingeckoData }: BalanceProps) {
             </div>
           </div>
         )}
-        <BalanceTable balance={balance} aggregateBalance={aggregateBalance} />
+        {address && (
+          <BalanceTable balance={balance} aggregateBalance={aggregateBalance} />
+        )}
       </div>
     </>
   );
