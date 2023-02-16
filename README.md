@@ -1,4 +1,4 @@
-<img width="676" alt="image" src="https://user-images.githubusercontent.com/125085134/219498183-5a66bd9f-3778-43de-a945-57beecae3948.png">
+![Home screen](https://user-images.githubusercontent.com/125085134/219498328-24a77161-8cfb-4272-b7bb-8be74518ad41.png)
 
 # Penny | Product Strategy
 
