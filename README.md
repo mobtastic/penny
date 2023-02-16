@@ -1,3 +1,5 @@
+<img width="676" alt="image" src="https://user-images.githubusercontent.com/125085134/219498183-5a66bd9f-3778-43de-a945-57beecae3948.png">
+
 # Penny | Product Strategy
 
 | Date of creation | Document version |
