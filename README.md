@@ -6,8 +6,8 @@
 | --- | --- |
 | February 16 2023 | 1.0 |
 
-Github: https://github.com/mobtastic/penny
-Twitter: https://twitter.com/PennyDefi
+- Github: https://github.com/mobtastic/penny
+- Twitter: https://twitter.com/PennyDefi
 
 ## **Introduction**
 
