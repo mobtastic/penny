@@ -1,4 +1,7 @@
+![PennyDefi](https://user-images.githubusercontent.com/125085134/219498494-f21bcda8-0004-477c-89a1-05eb27c66829.png)
+
 # Penny | Product Strategy
+
 
 | Date of creation | Document version |
 | --- | --- |
@@ -167,3 +170,5 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Also add a `.env` with a WalletConnect Cloud Project ID for the use of Web3Modal.  `env.example` demonstrates the format used.Can be found [here.](https://cloud.walletconnect.com/sign-in) 
