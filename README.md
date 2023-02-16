@@ -170,3 +170,4 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Also add a `.env` with a WalletConnect Cloud Project ID for the use of Web3Modal. Can be found [here.](https://cloud.walletconnect.com/sign-in) 
