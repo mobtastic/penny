@@ -1,6 +1,7 @@
-![Home screen](https://user-images.githubusercontent.com/125085134/219498328-24a77161-8cfb-4272-b7bb-8be74518ad41.png)
+![PennyDefi](https://user-images.githubusercontent.com/125085134/219498494-f21bcda8-0004-477c-89a1-05eb27c66829.png)
 
 # Penny | Product Strategy
+
 
 | Date of creation | Document version |
 | --- | --- |
