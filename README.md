@@ -162,13 +162,20 @@ Upon the successful launch of our MVP, we aim to continuously improve and refine
 First, run the development server:
 
 ```bash
+npm install
+# or
+yarn 
+```
+
+- Add a `.env` with a WalletConnect Cloud Project ID for the use of Web3Modal.
+- `env.example` demonstrates the format used. Can be found [here.](https://cloud.walletconnect.com/sign-in) 
+
+```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Also add a `.env` with a WalletConnect Cloud Project ID for the use of Web3Modal.  `env.example` demonstrates the format used.Can be found [here.](https://cloud.walletconnect.com/sign-in) 
+
