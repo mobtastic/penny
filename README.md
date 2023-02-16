@@ -2,10 +2,12 @@
 
 # Penny | Product Strategy
 
-
 | Date of creation | Document version |
 | --- | --- |
 | February 16 2023 | 1.0 |
+
+Github: https://github.com/mobtastic/penny
+Twitter: https://twitter.com/PennyDefi
 
 ## **Introduction**
 
@@ -155,7 +157,6 @@ Upon the successful launch of our MVP, we aim to continuously improve and refine
 - Dex aggregator
 
 - NFT aggregator
-
 
 ## Development
 
